@@ -95,12 +95,12 @@ function checkForMatch(){
     const optionTwoId = chosenCardsId[1]   //antra pazymeta kortele
 
     if (optionOneId === optionTwoId){   //jeigu pasirinktas pirmas ir antras elementas sutampa, id yra tokie patys, tai paspaude du kartus ant tos pacios korteles
-        alert('You have clicked the same image!')  //pasirodo uzrasas
+        Swal.fire('You have clicked the same image!')  //pasirodo uzrasas
         cards[optionOneId].setAttribute('src', 'src/images/blank.png')  //kortelems priskiriame nauja value, ji vel apsivercia ir neberodo vaizdo
         cards[optionTwoId].setAttribute('src', 'src/images/blank.png')
 
     } else if (chosenCards[0] === chosenCards[1]) {  //jei korteliu vardai sutampa, tokios pacios korteles yra po du kartus, todel ju id skirtingi, bet sutampa vardai. vadinasi paspausta ne ant tos pacios korteles du kartus. chosenCards masyve renkasi names.
-        alert('You have found a match!')
+        Swal.fire('You have found a match :)')
         cards[optionOneId].setAttribute('src', 'src/images/white.png')  //kortelems priskiriame nauja value, jos pasidaro baltos
         cards[optionTwoId].setAttribute('src', 'src/images/white.png')
         cards[optionOneId].removeEventListener('click', flipCard)  //ir pasaliname event listeneri, kad nebegalima butu ant tos korteles paspausti
@@ -110,7 +110,7 @@ function checkForMatch(){
     } else if (chosenCards[0] != chosenCards[1]) {  //jei korteles nesutampa, chosenCards masyve, kur renkami vardai
         cards[optionOneId].setAttribute('src', 'src/images/blank.png')  //kortelems priskiriame nauja value, jos pasidaro vel margos
         cards[optionTwoId].setAttribute('src', 'src/images/blank.png')
-        alert('Sorry try again!')
+        Swal.fire('Sorry :(', 'Try again!')
     }
     chosenCards = [];  //po pirmu dvieju paspaudimu masyvas, kur renkami pasirinktu korteliu vardai ir masyvas, kur renkami pasirinktu korteliu id vel tampa tusti, nes vel spejama is naujo ar dvi pasirinktos korteles sutampa.
     chosenCardsId = [];
@@ -118,9 +118,9 @@ function checkForMatch(){
 
     if (cardsWon.length === cardArray.length / 2) {  //jei atpsetu korteliu masyvo ilgis lygus originalaus korteliu masyvo ilgiui pasalintui is 2, reiskia visos korteles atverstos ir atspetos.
         resultDisplay.textContent = 'Congratulations you have won!'
+        Swal.fire('Congratulations!', 'You have won!', 'success')  //kad Swal.alert() veiktu reikia, html nurodyti specifini script ir css link
     }
 }
-
 createBoard()  //aktyvavimas funkcijos
 
 })
